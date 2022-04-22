@@ -1,0 +1,349 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="External">
+      <UniqueIdentifier>{eedc3594-ffc4-42f3-8d55-d765b2fa3954}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{054b6645-71e0-4de6-82ec-c57c16a5ff7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="External\ImGui">
+      <UniqueIdentifier>{b5926485-ab3c-4607-8017-f876c5d1e9cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{7bf997fd-207b-42af-bd09-bcb9d2856efb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Audio">
+      <UniqueIdentifier>{fcb73fa5-c24d-438c-a2b4-7a0e3fb6a269}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\BlendMode">
+      <UniqueIdentifier>{0aed4fc7-ac63-497a-911b-ec3bab720ff1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Camera">
+      <UniqueIdentifier>{b89edbab-a2a4-44d2-b5e5-f878e026e21f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Collision">
+      <UniqueIdentifier>{12567677-916f-4bf1-a19a-51998d049f16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Headers">
+      <UniqueIdentifier>{684fee9c-52a4-47c9-b797-46b92421e7a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Debug Primitives">
+      <UniqueIdentifier>{a3e8237e-686a-4de5-875a-78efddcd655e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\DirectX">
+      <UniqueIdentifier>{7c523486-c3c0-48ac-a628-60c3ca375c05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Drag and Drop">
+      <UniqueIdentifier>{2e376009-dcfb-4e72-9d6b-86606048b87e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Effects">
+      <UniqueIdentifier>{241e93c8-4552-47e2-8c8f-229747ba5734}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Input">
+      <UniqueIdentifier>{526bd95f-fee2-4f57-b047-9d845acc63c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Lighting">
+      <UniqueIdentifier>{90b4c64e-91ae-4caa-ad87-5ca6057ca352}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Model">
+      <UniqueIdentifier>{8d6676d8-017a-450b-a000-34d7f0fda154}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Rasterizer">
+      <UniqueIdentifier>{210f8fa6-4f1c-4047-922f-89431304c8b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Resource Manager">
+      <UniqueIdentifier>{d92d4069-eb06-4a97-b8cb-aa52a89ec92d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Shaders">
+      <UniqueIdentifier>{68891e05-1c37-43f6-b829-3a4a5a37bd50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Sprite">
+      <UniqueIdentifier>{a0311ae5-1318-4059-9adf-9b20fe226b84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\System">
+      <UniqueIdentifier>{b2dcc5cd-3ca6-45c4-b231-04c6030b3c45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Text">
+      <UniqueIdentifier>{ce482157-3f90-4ee6-a237-69df3fcd6edc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Audio\AudioStates">
+      <UniqueIdentifier>{7a76c1df-c834-4343-bcb7-e3e0ba090aab}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="SourceCode\GUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Engine\Audio.cpp">
+      <Filter>Engine\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Engine\BlendMode.cpp">
+      <Filter>Engine\BlendMode</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Engine\Camera.cpp">
+      <Filter>Engine\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Engine\DEBUG_MANAGER.cpp">
+      <Filter>Engine\Debug Primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Engine\DEBUG_PRIMITIVE.cpp">
+      <Filter>Engine\Debug Primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Engine\DirectX11.cpp">
+      <Filter>Engine\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Engine\DROPMANAGER.cpp">
+      <Filter>Engine\Drag and Drop</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Engine\EFFECTS.cpp">
+      <Filter>Engine\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Engine\Input.cpp">
+      <Filter>Engine\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Engine\LIGHTING.cpp">
+      <Filter>Engine\Lighting</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Engine\RASTERIZER.cpp">
+      <Filter>Engine\Rasterizer</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Engine\ResourceManager.cpp">
+      <Filter>Engine\Resource Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Engine\TextureManager.cpp">
+      <Filter>Engine\Resource Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Engine\SHADERS.cpp">
+      <Filter>Engine\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Engine\Sprite.cpp">
+      <Filter>Engine\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Engine\Main.cpp">
+      <Filter>Engine\System</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Engine\System.cpp">
+      <Filter>Engine\System</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Engine\Text.cpp">
+      <Filter>Engine\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Engine\Graphics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="External\ImGui\imgui_impl_dx11.cpp">
+      <Filter>External\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="External\ImGui\imgui_impl_win32.cpp">
+      <Filter>External\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="External\ImGui\imgui_tables.cpp">
+      <Filter>External\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="External\ImGui\imgui_widgets.cpp">
+      <Filter>External\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="External\ImGui\imgui.cpp">
+      <Filter>External\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="External\ImGui\imgui_demo.cpp">
+      <Filter>External\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="External\ImGui\imgui_draw.cpp">
+      <Filter>External\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Engine\MODEL_RESOURCE.cpp">
+      <Filter>Engine\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Engine\MODEL.cpp">
+      <Filter>Engine\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Engine\COLLISION.cpp">
+      <Filter>Engine\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Engine\AudioStates\AudioStateFadeOut.cpp">
+      <Filter>Engine\Audio\AudioStates</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Engine\AudioStates\AudioStatePause.cpp">
+      <Filter>Engine\Audio\AudioStates</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Engine\AudioStates\AudioStatePlay.cpp">
+      <Filter>Engine\Audio\AudioStates</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Engine\AudioStates\AudioStates.cpp">
+      <Filter>Engine\Audio\AudioStates</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Engine\AudioStates\AudioStateFade.cpp">
+      <Filter>Engine\Audio\AudioStates</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceCode\Engine\AudioStates\AudioStateFadeIn.cpp">
+      <Filter>Engine\Audio\AudioStates</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SourceCode\GUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Engine\Audio.h">
+      <Filter>Engine\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Engine\BlendMode.h">
+      <Filter>Engine\BlendMode</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Engine\Camera.h">
+      <Filter>Engine\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Engine\CerealHeaders.h">
+      <Filter>Engine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Engine\DEBUG_MANAGER.h">
+      <Filter>Engine\Debug Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Engine\DEBUG_PRIMITIVE.h">
+      <Filter>Engine\Debug Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Engine\DirectX11.h">
+      <Filter>Engine\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Engine\DROPMANAGER.h">
+      <Filter>Engine\Drag and Drop</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Engine\DXMath.h">
+      <Filter>Engine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Engine\EFFECTS.h">
+      <Filter>Engine\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Engine\Input.h">
+      <Filter>Engine\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Engine\IMGUI.h">
+      <Filter>Engine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Engine\LIGHTING.h">
+      <Filter>Engine\Lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Engine\RASTERIZER.h">
+      <Filter>Engine\Rasterizer</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Engine\OBJECT.h">
+      <Filter>Engine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Engine\PERFORMANCE_COUNTER.h">
+      <Filter>Engine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Engine\ResourceManager.h">
+      <Filter>Engine\Resource Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Engine\TextureManager.h">
+      <Filter>Engine\Resource Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Engine\SHADERS.h">
+      <Filter>Engine\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Engine\Sprite.h">
+      <Filter>Engine\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Engine\SoundEffect.h">
+      <Filter>Engine\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Engine\Singleton.h">
+      <Filter>Engine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Engine\System.h">
+      <Filter>Engine\System</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Engine\Text.h">
+      <Filter>Engine\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Engine\Texture.h">
+      <Filter>Engine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Engine\Graphics.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="External\ImGui\imgui_impl_dx11.h">
+      <Filter>External\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="External\ImGui\imgui_impl_win32.h">
+      <Filter>External\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="External\ImGui\imgui_internal.h">
+      <Filter>External\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="External\ImGui\imstb_rectpack.h">
+      <Filter>External\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="External\ImGui\imstb_textedit.h">
+      <Filter>External\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="External\ImGui\imstb_truetype.h">
+      <Filter>External\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="External\ImGui\imconfig.h">
+      <Filter>External\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="External\ImGui\imfilebrowser.h">
+      <Filter>External\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="External\ImGui\imgui.h">
+      <Filter>External\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Engine\MODEL_RESOURCE.h">
+      <Filter>Engine\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Engine\MODEL.h">
+      <Filter>Engine\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Engine\COLLISION.h">
+      <Filter>Engine\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Engine\AudioStates\AudioStateFadeOut.h">
+      <Filter>Engine\Audio\AudioStates</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Engine\AudioStates\AudioStatePause.h">
+      <Filter>Engine\Audio\AudioStates</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Engine\AudioStates\AudioStatePlay.h">
+      <Filter>Engine\Audio\AudioStates</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Engine\AudioStates\AudioStates.h">
+      <Filter>Engine\Audio\AudioStates</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Engine\AudioStates\AudioStateFade.h">
+      <Filter>Engine\Audio\AudioStates</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceCode\Engine\AudioStates\AudioStateFadeIn.h">
+      <Filter>Engine\Audio\AudioStates</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shaders\Base3DShader.fx">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\DebugShader.fx">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\OutlineShader.fx">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\PhongShader.fx">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\Shader_2d.fx">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\Shader_3d.fx">
+      <Filter>Shaders</Filter>
+    </None>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{fa42922d-eef1-4dc4-a99a-12cb52a5320b}</ProjectGuid>
+    <RootNamespace>ModelLoader</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(solution)External\Cereal\include;C:\Program Files\Autodesk\FBX\FBX SDK\2020.2\include;$(solution)External\DirectXTK\Inc;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(solution)Cereal\include;C:\Program Files\Autodesk\FBX\FBX SDK\2020.2\include;$(solution)DirectXTK\Inc;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(solution)External\Cereal\include;C:\Program Files\Autodesk\FBX\FBX SDK\2020.2\include;$(solution)External\DirectXTK\Inc;$(IncludePath)</IncludePath>
+    <LibraryPath>$(solution)External\DirectXTK\Bin\Desktop_2019_Win10\x64\Debug;C:\Program Files\Autodesk\FBX\FBX SDK\2020.2\lib\vs2019\x64\debug;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(solution)Cereal\include;C:\Program Files\Autodesk\FBX\FBX SDK\2020.2\include;$(solution)DirectXTK\Inc;$(IncludePath)</IncludePath>
+    <LibraryPath>$(solution)DirectXTK\Bin\Desktop_2019_Win10\x64\Release;C:\Program Files\Autodesk\FBX\FBX SDK\2020.2\lib\vs2019\x64\release;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>zlib-md.lib;libxml2-md.lib;libfbxsdk-md.lib;DirectXTK.lib;d3d11.lib;DXGI.lib;D3DCompiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>zlib-md.lib;libxml2-md.lib;libfbxsdk-md.lib;DirectXTK.lib;d3d11.lib;DXGI.lib;D3DCompiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>zlib-md.lib;libxml2-md.lib;libfbxsdk-md.lib;DirectXTK.lib;d3d11.lib;DXGI.lib;D3DCompiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>zlib-md.lib;libxml2-md.lib;libfbxsdk-md.lib;DirectXTK.lib;d3d11.lib;DXGI.lib;D3DCompiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="External\ImGui\imgui.cpp" />
+    <ClCompile Include="External\ImGui\imgui_demo.cpp" />
+    <ClCompile Include="External\ImGui\imgui_draw.cpp" />
+    <ClCompile Include="External\ImGui\imgui_impl_dx11.cpp" />
+    <ClCompile Include="External\ImGui\imgui_impl_win32.cpp" />
+    <ClCompile Include="External\ImGui\imgui_tables.cpp" />
+    <ClCompile Include="External\ImGui\imgui_widgets.cpp" />
+    <ClCompile Include="SourceCode\Engine\Audio.cpp" />
+    <ClCompile Include="SourceCode\Engine\AudioStates\AudioStateFade.cpp" />
+    <ClCompile Include="SourceCode\Engine\AudioStates\AudioStateFadeIn.cpp" />
+    <ClCompile Include="SourceCode\Engine\AudioStates\AudioStateFadeOut.cpp" />
+    <ClCompile Include="SourceCode\Engine\AudioStates\AudioStatePause.cpp" />
+    <ClCompile Include="SourceCode\Engine\AudioStates\AudioStatePlay.cpp" />
+    <ClCompile Include="SourceCode\Engine\AudioStates\AudioStates.cpp" />
+    <ClCompile Include="SourceCode\Engine\BlendMode.cpp" />
+    <ClCompile Include="SourceCode\Engine\Camera.cpp" />
+    <ClCompile Include="SourceCode\Engine\COLLISION.cpp" />
+    <ClCompile Include="SourceCode\Engine\DEBUG_MANAGER.cpp" />
+    <ClCompile Include="SourceCode\Engine\DEBUG_PRIMITIVE.cpp" />
+    <ClCompile Include="SourceCode\Engine\DirectX11.cpp" />
+    <ClCompile Include="SourceCode\Engine\DROPMANAGER.cpp" />
+    <ClCompile Include="SourceCode\Engine\EFFECTS.cpp" />
+    <ClCompile Include="SourceCode\Engine\Graphics.cpp" />
+    <ClCompile Include="SourceCode\Engine\Input.cpp" />
+    <ClCompile Include="SourceCode\Engine\LIGHTING.cpp" />
+    <ClCompile Include="SourceCode\Engine\Main.cpp" />
+    <ClCompile Include="SourceCode\Engine\MODEL.cpp" />
+    <ClCompile Include="SourceCode\Engine\MODEL_RESOURCE.cpp" />
+    <ClCompile Include="SourceCode\Engine\RASTERIZER.cpp" />
+    <ClCompile Include="SourceCode\Engine\ResourceManager.cpp" />
+    <ClCompile Include="SourceCode\Engine\SHADERS.cpp" />
+    <ClCompile Include="SourceCode\Engine\Sprite.cpp" />
+    <ClCompile Include="SourceCode\Engine\System.cpp" />
+    <ClCompile Include="SourceCode\Engine\Text.cpp" />
+    <ClCompile Include="SourceCode\Engine\TextureManager.cpp" />
+    <ClCompile Include="SourceCode\GUI.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="External\ImGui\imconfig.h" />
+    <ClInclude Include="External\ImGui\imfilebrowser.h" />
+    <ClInclude Include="External\ImGui\imgui.h" />
+    <ClInclude Include="External\ImGui\imgui_impl_dx11.h" />
+    <ClInclude Include="External\ImGui\imgui_impl_win32.h" />
+    <ClInclude Include="External\ImGui\imgui_internal.h" />
+    <ClInclude Include="External\ImGui\imstb_rectpack.h" />
+    <ClInclude Include="External\ImGui\imstb_textedit.h" />
+    <ClInclude Include="External\ImGui\imstb_truetype.h" />
+    <ClInclude Include="SourceCode\Engine\Audio.h" />
+    <ClInclude Include="SourceCode\Engine\AudioStates\AudioStateFade.h" />
+    <ClInclude Include="SourceCode\Engine\AudioStates\AudioStateFadeIn.h" />
+    <ClInclude Include="SourceCode\Engine\AudioStates\AudioStateFadeOut.h" />
+    <ClInclude Include="SourceCode\Engine\AudioStates\AudioStatePause.h" />
+    <ClInclude Include="SourceCode\Engine\AudioStates\AudioStatePlay.h" />
+    <ClInclude Include="SourceCode\Engine\AudioStates\AudioStates.h" />
+    <ClInclude Include="SourceCode\Engine\BlendMode.h" />
+    <ClInclude Include="SourceCode\Engine\Camera.h" />
+    <ClInclude Include="SourceCode\Engine\CerealHeaders.h" />
+    <ClInclude Include="SourceCode\Engine\COLLISION.h" />
+    <ClInclude Include="SourceCode\Engine\DEBUG_MANAGER.h" />
+    <ClInclude Include="SourceCode\Engine\DEBUG_PRIMITIVE.h" />
+    <ClInclude Include="SourceCode\Engine\DirectX11.h" />
+    <ClInclude Include="SourceCode\Engine\DROPMANAGER.h" />
+    <ClInclude Include="SourceCode\Engine\DXMath.h" />
+    <ClInclude Include="SourceCode\Engine\EFFECTS.h" />
+    <ClInclude Include="SourceCode\Engine\Graphics.h" />
+    <ClInclude Include="SourceCode\Engine\IMGUI.h" />
+    <ClInclude Include="SourceCode\Engine\Input.h" />
+    <ClInclude Include="SourceCode\Engine\LIGHTING.h" />
+    <ClInclude Include="SourceCode\Engine\MODEL.h" />
+    <ClInclude Include="SourceCode\Engine\MODEL_RESOURCE.h" />
+    <ClInclude Include="SourceCode\Engine\OBJECT.h" />
+    <ClInclude Include="SourceCode\Engine\PERFORMANCE_COUNTER.h" />
+    <ClInclude Include="SourceCode\Engine\RASTERIZER.h" />
+    <ClInclude Include="SourceCode\Engine\ResourceManager.h" />
+    <ClInclude Include="SourceCode\Engine\SHADERS.h" />
+    <ClInclude Include="SourceCode\Engine\Singleton.h" />
+    <ClInclude Include="SourceCode\Engine\SoundEffect.h" />
+    <ClInclude Include="SourceCode\Engine\Sprite.h" />
+    <ClInclude Include="SourceCode\Engine\System.h" />
+    <ClInclude Include="SourceCode\Engine\Text.h" />
+    <ClInclude Include="SourceCode\Engine\Texture.h" />
+    <ClInclude Include="SourceCode\Engine\TextureManager.h" />
+    <ClInclude Include="SourceCode\GUI.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shaders\Base3DShader.fx">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="Shaders\DebugShader.fx">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="Shaders\OutlineShader.fx">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="Shaders\PhongShader.fx">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="Shaders\Shader_2d.fx">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="Shaders\Shader_3d.fx">
+      <FileType>Document</FileType>
+    </None>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
