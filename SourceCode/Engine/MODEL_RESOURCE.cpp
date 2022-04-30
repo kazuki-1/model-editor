@@ -95,7 +95,11 @@ MODEL_RESOURCES::MODEL_RESOURCES(ID3D11Device* dv, std::string model_path, bool 
                 node.Name = cNode->GetName();
                 node.UID = cNode->GetUniqueID();
                 node.p_Index = Scenes.indexof(cNode->GetParent() ? cNode->GetParent()->GetUniqueID() : 0);
+                node.transform.scale = Convert::ToFloat4(cNode->EvaluateLocalScaling());
+                node.transform.rotation = Convert::ToFloat4(cNode->EvaluateLocalRotation());
+                node.transform.translation = Convert::ToFloat4(cNode->EvaluateLocalTranslation());
                 Scenes.Nodes.emplace_back(node);
+
                 for (int cIndex = 0; cIndex < cNode->GetChildCount(); ++cIndex)
                 {
                     Traverse(cNode->GetChild(cIndex));
@@ -142,21 +146,71 @@ void MODEL_RESOURCES::RetrieveMeshes(FbxScene* scene)
 {
     for (auto& n : Scenes.Nodes)
     {
+        FbxNode* cur_node{ scene->FindNodeByName(n.Name.c_str()) };
         if (n.Attribute != FbxNodeAttribute::EType::eMesh)
             continue;
+        
+
+        
         FbxNode* fNode{ scene->FindNodeByName(n.Name.c_str()) };
         FbxMesh* fMesh{ fNode->GetMesh() };
         if (!fMesh)
             continue;
 
-
-
         // For inserting into Meshes vector
         MESH m;
         m.UID = fNode->GetUniqueID();
-        m.Name = fMesh->GetNameOnly();
+        const char* test = fMesh->GetNode()->GetName();
+        m.Name = fMesh->GetNode()->GetName();
         m.n_Index = Scenes.indexof(fMesh->GetNode()->GetUniqueID());
-        m.BaseTransform = Convert::ToFloat4x4(fNode->EvaluateGlobalTransform());
+        XMMATRIX parent_matrix{ XMMatrixIdentity() };
+
+
+        int64_t parent_index{n.p_Index};
+        while (parent_index > -1) {
+            SCENE::NODE parentNode{ Scenes.Nodes.at(parent_index) };
+
+            FbxNode* parent{ scene->FindNodeByName(parentNode.Name.c_str()) };
+            XMFLOAT4X4 p{ Convert::ToFloat4x4(parent->EvaluateLocalTransform()) };
+            XMMATRIX local_tran{ XMLoadFloat4x4(&p) };
+            parent_matrix *= local_tran;
+            parent_index = parentNode.p_Index;
+
+
+        }
+
+
+        Vector4 geo_s, geo_r, geo_t;
+        geo_s = { Convert::ToFloat4(fNode->GetGeometricScaling(FbxNode::EPivotSet::eSourcePivot)) };
+        geo_r = { Convert::ToFloat4(fNode->GetGeometricScaling(FbxNode::EPivotSet::eSourcePivot)) };
+        geo_t = { Convert::ToFloat4(fNode->GetGeometricScaling(FbxNode::EPivotSet::eSourcePivot)) };
+
+        float g_x, g_y, g_z;
+        g_x = Math::ToRadians(geo_r.x);
+        g_y = Math::ToRadians(geo_r.y);
+        g_z = Math::ToRadians(geo_r.z);
+
+        geo_r = { g_x, g_y, g_z, geo_r.w };
+
+        XMMATRIX geometric = { XMMatrixScalingFromVector(geo_s.XMV()) * XMMatrixRotationRollPitchYawFromVector(geo_r.XMV()) * XMMatrixTranslationFromVector(geo_t.XMV()) };
+
+
+
+        XMVECTOR s{ n.transform.scale.XMV() };
+        float x, y, z;
+        x = Math::ToRadians(n.transform.rotation.x);
+        y = Math::ToRadians(n.transform.rotation.y);
+        z = Math::ToRadians(n.transform.rotation.z);
+        XMVECTOR r{ Vector3(x, y, z).XMV() };
+        XMVECTOR t{ n.transform.translation.XMV() };
+        XMMATRIX local{ XMMatrixScalingFromVector(s) * XMMatrixRotationRollPitchYawFromVector(r) * XMMatrixTranslationFromVector(t)};
+
+        XMStoreFloat4x4(&m.BaseTransform, parent_matrix * local * geometric);
+
+        // m.BaseTransform = Convert::ToFloat4x4(fNode->EvaluateGlobalTransform());
+        // XMMATRIX transform{  XMLoadFloat4x4(&m.BaseTransform) /** XMLoadFloat4x4(&global) */};
+        //XMStoreFloat4x4(&m.BaseTransform, transform);
+
 
         for (int ind = 0; ind < scene->GetNodeCount(); ++ind)
         {
@@ -515,6 +569,7 @@ void MODEL_RESOURCES::RetrieveSkeleton(FbxMesh* m, SKELETON& s)
         const int c_Count{ f_Skin->GetClusterCount() };         // Cluster Count (Retrieved from FbxSkin)
         s.Bones.resize(c_Count);
         int c_Index{};
+        FbxCluster* cluster = f_Skin->GetCluster(52);
         for (auto& b : s.Bones)
         {
             FbxCluster* f_Cluster{ f_Skin->GetCluster(c_Index) };
@@ -696,7 +751,7 @@ void MODEL_RESOURCES::CreateBuffers(ID3D11Device* dv, const char* model_path)
                 if (!std::filesystem::exists(format))
                     std::filesystem::create_directories(format);
                 std::filesystem::path filename{ m->second.texture_path[ind] };
-                filename.replace_extension("png");
+                //filename.replace_extension("png");
 
                 path = format += filename.filename();
                 //m->second.Textures[ind].reset(new TEXTURE(path, dv));
@@ -782,21 +837,35 @@ void MODEL_RESOURCES::Render(ID3D11DeviceContext* dc, XMFLOAT4X4 world, XMFLOAT4
     outlineData.outline_colour = { 1.0f, 1.0f, 1.0f, 1.0f };
     outlineData.outline_size = 0.01f;
     dc->RSSetState(RasterizerManager::Instance()->Retrieve("3D")->Rasterizer().Get());
-    for (auto& s : shaders)
+    for (auto& shader : shaders)
     {
-        if (s.first == L"OutlineShader.fx")
+        if (shader.first == L"OutlineShader.fx")
             continue;
         for (auto& m : Meshes)
         {
             dc->RSSetState(RasterizerManager::Instance()->Retrieve("3D")->Rasterizer().Get());
             dc->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
             dc->OMSetBlendState(BlendModeManager::Instance()->Get().Get(), 0, 0xFFFFFFFF);
-            s.second->SetShaders(dc);
+            shader.second->SetShaders(dc);
             // Updating Object Constant buffers (World and colour)
             MESH_CONSTANT_BUFFER data{};
             //const ANIMATION::KEYFRAME::NODE& n{ kf->Nodes.at(0) };
             //XMMATRIX f_World{ XMLoadFloat4x4(&Axises.AxisCoords) * XMLoadFloat4x4(&world) };
             XMMATRIX f_World{ XMLoadFloat4x4(&m.BaseTransform) * (XMLoadFloat4x4(&Axises.AxisCoords) * XMLoadFloat4x4(&world)) };       // Converting  Axis Systems to Base Axis
+
+            XMMATRIX transposed;
+            XMVECTOR s, r, t;
+            XMMatrixDecompose(&s, &r, &t, XMLoadFloat4x4(&m.BaseTransform));
+            t = XMVector3TransformCoord(t, XMLoadFloat4x4(&Axises.AxisCoords));
+            transposed =  XMMatrixScalingFromVector(s) * XMMatrixRotationRollPitchYawFromVector(r) * XMMatrixTranslationFromVector(t);
+
+
+
+
+
+
+
+
             data.colour = colour;               // Incase model has no subsets
             //ANIMATION::KEYFRAME::NODE node{ kf->Nodes.at(m.n_Index) };
             //XMStoreFloat4x4(&data.world, XMLoadFloat4x4(&node.g_Transform) * f_World);

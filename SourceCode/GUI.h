@@ -24,6 +24,7 @@ public:
     void MeshUI();
     void Reset();
     void BoneListUI();
+    void NodeList();
 
     void Finalize();
     void Select();

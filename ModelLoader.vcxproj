@@ -80,8 +80,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(solution)External\Cereal\include;C:\Program Files\Autodesk\FBX\FBX SDK\2020.2\include;$(solution)External\DirectXTK\Inc;$(IncludePath)</IncludePath>
-    <LibraryPath>$(solution)External\DirectXTK\Bin\Desktop_2019_Win10\x64\Debug;C:\Program Files\Autodesk\FBX\FBX SDK\2020.2\lib\vs2019\x64\debug;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(solution)External\Cereal\include;$(solution)External\FbxSdk 2020\include;$(solution)External\DirectXTK\Inc;$(IncludePath)</IncludePath>
+    <LibraryPath>$(solution)External\DirectXTK\Bin\Desktop_2019_Win10\x64\Debug;$(solution)External\FbxSdk 2020\lib\debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>

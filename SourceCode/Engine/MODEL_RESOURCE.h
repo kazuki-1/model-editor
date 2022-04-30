@@ -188,11 +188,23 @@ public:
             uint64_t UID{ 0 };
             std::string Name;
             FbxNodeAttribute::EType Attribute{ FbxNodeAttribute::EType::eUnknown };
-            int64_t p_Index{ -1 };
+            int64_t p_Index{ -1 };          // parent_index
+            struct Transform {
+                Vector4 scale;
+                Vector4 rotation;
+                Vector4 translation;
+
+                template <class T>
+                void serialize(T& t)
+                {
+                    t(scale, rotation, translation);
+                }
+
+            }transform;
             template<class T>
             void serialize(T& t)
             {
-                t(UID, Name, p_Index);
+                t(UID, Name, p_Index, transform);
             }
         };
         std::vector<NODE>Nodes;

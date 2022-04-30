@@ -87,11 +87,11 @@ cbuffer CBUFFER_S : register(b0)
     float4 viewPosition;
     float4 ambientLightColour;
     DLIGHT_DATA directional;
-    //PLIGHT_DATA pointlights[PLIGHT_MAX];
-    //SLIGHT_DATA spotlights[SLIGHT_MAX];
-    //int pLightCount;
-    //int sLightCount;
-    //float2 temp;
+    PLIGHT_DATA pointlights[PLIGHT_MAX];
+    SLIGHT_DATA spotlights[SLIGHT_MAX];
+    int pLightCount;
+    int sLightCount;
+    float2 temp;
 }
 cbuffer CBUFFER_M : register(b1)
 {

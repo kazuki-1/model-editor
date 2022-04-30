@@ -39,7 +39,8 @@ struct PLIGHT_DATA
     float4 position;
     float4 colour;
     float range;
-    float3 temp;
+    float intensity;
+    float2 temp;
 };
 struct SLIGHT_DATA
 {
@@ -177,8 +178,8 @@ float4 PS_MAIN(VS_OUT pin) : SV_TARGET
         weaken = clamp(weaken, 0.0f, 1.0f);
         weaken *= weaken;
         float3 pl_Norm = normalize(lightVector);
-        PointDiffuse += CalculateLambertDiffuse(N, pl_Norm, pointlights[a].colour.rgb, kd.rgb) * weaken;
-        PointSpecular += CalculatePhongSpecular(N, pl_Norm, pointlights[a].colour.rgb, E, shineFactor, ks.rgb) * weaken;
+        PointDiffuse += CalculateLambertDiffuse(N, pl_Norm, pointlights[a].colour.rgb, kd.rgb) * weaken * pointlights[a].intensity;
+        PointSpecular += CalculatePhongSpecular(N, pl_Norm, pointlights[a].colour.rgb, E, shineFactor, ks.rgb) * weaken * pointlights[a].intensity;
     }
 
     float3 SpotDiffuse = { 0, 0, 0 };

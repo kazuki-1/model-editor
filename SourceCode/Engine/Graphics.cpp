@@ -14,7 +14,7 @@
 using namespace DirectX;
 
 
-std::shared_ptr<MODEL>Stage;
+//std::shared_ptr<MODEL>Stage;
 
 HRESULT Graphics::Initialize(int Width, int Height, HWND hwnd)
 {

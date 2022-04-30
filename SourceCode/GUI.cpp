@@ -20,7 +20,8 @@ int s_type{};
 int selected_anim{};
 std::string types[4] = { "DIFFUSE", "NORMAL", "BUMP", "EMPTY" };
 std::string material_path;
-std::string anim_name = "";
+char anim_name[256] = "";
+std::string model_name;
 bool playAnim{};
 bool wire{};
 bool created_popup{};
@@ -55,7 +56,7 @@ void GUI::Execute()
     int a = 0;
     ImGui::Begin("Model");
     std::string directory, format, path;
-    IMGUI::Instance()->InputText("Model Path", &model_path);
+    
     if (DROPMANAGER::Instance()->Loaded() && empty)
     {
         model_path = DROPMANAGER::Instance()->Path();
@@ -73,26 +74,13 @@ void GUI::Execute()
     bool isEmpty{};
     static bool fileOpen{};
 
-    if (ImGui::Button("Create Model") )
+    if (ImGui::Button("Open model") )
     {
-        if (model_path == "")
-        {
             browser->Open();
             browser->SetTitle("Open Model File");
             browser->SetTypeFilters({ ".fbx", ".mrs", ".obj", ".*" });
             isEmpty = fileOpen = true;
-        }
-        if (!isEmpty)
-        {
 
-            if (hr == S_OK) {
-                model = std::make_shared<MODEL>();
-            }
-            hr = model->Initialize(model_path);
-            model->SetTake(0);
-            model->SetFrame(0);
-            Reset();
-        }
     }
 
     if (fileOpen)
@@ -101,17 +89,25 @@ void GUI::Execute()
         if (browser->HasSelected())
         {
             model_path = browser->GetSelected().string();
+            std::filesystem::path path(model_path);
+            model_name = path.filename().string();
+            path.replace_extension("");
+
             fileOpen = false;
             browser->Close();
+            if (hr == S_OK) {
+                model = std::make_shared<MODEL>();
+            }
+            hr = model->Initialize(model_path);
+            model->SetTake(0);
+            model->SetFrame(0);
+            Reset();
+
         }
     }
 
     ImGui::FileBrowser* creator{IMGUI::Instance()->FileCreator()};
     static bool fileCreate{};
-    if (ImGui::Button("Reset Camera"))
-    {
-        Camera::Instance()->ResetToTarget({ 0, 0, 0 });
-    }
     if (hr == S_OK)
     {
         if (ImGui::Button("Export model"))
@@ -135,41 +131,17 @@ void GUI::Execute()
                 fileCreate = false;
             }
         }
-        //ImGui::InputText(" New File Name", (char*)created_path.c_str(), 256);
-        //if (ImGui::Button("Recreate"))
-        //{
-        //    if (created_path == "") {
-        //        fileCreate = empty = true;
-        //        creator->Open();
-        //        creator->SetTitle("Save as");
-        //        creator->SetTypeFilters({ ".mrs" });
-        //        /*std::string p{};
-        //        directory = "./Generated/";
-        //        format = ".mrs";
-        //        p = created_path.c_str();
-        //        p = directory + p + format;
-        //        std::filesystem::path fp(p);
-
-        //        if (std::filesystem::exists(fp))
-        //            std::filesystem::remove(fp);
-        //        model->Resource()->Recreate(fp.string());
-        //        created_popup = true;*/
-        //    }
-        //    if(!empty)
-        //    {
-        //        format = { ".mrs" };
-        //        std::filesystem::path path(created_path);
-        //        path.replace_extension(format);
-        //        model->resource->Recreate(path.string());
-        //    }
-        //}
-
-        //IMGUI::Instance()->DisplayBrowser(&created_path, &fileCreate);
 
         IMGUI::Instance()->CreatePopup("Model Recreated! Check ./Generated for file", &created_popup);
     }
-    //if (ImGui::Button("Reset Camera"))
-    //    Camera::Instance()->ResetCamera();
+
+    ImGui::Separator();
+
+    if (ImGui::Button("Reset Camera"))
+    {
+        Camera::Instance()->ResetToTarget({ 0, 0, 0 });
+    }
+
 
     ImGui::End();
 
@@ -208,7 +180,7 @@ void GUI::TransformUI()
 
 void GUI::AnimationUI()
 {
-
+    ImGui::FileBrowser* browser{ IMGUI::Instance()->FileBrowser() };
 
     ImGui::Begin("Animation");
     std::vector<MODEL_RESOURCES::ANIMATION>&anims = model->Resource()->Animations;
@@ -249,18 +221,44 @@ void GUI::AnimationUI()
     else
         model->ResumeAnim();
 
-    IMGUI::Instance()->InputText("New Animation path", &animation_path);
-    if (ImGui::Button("Insert"))
+
+
+
+    static bool fileOpenA{};
+
+    //IMGUI::Instance()->InputText("New Animation path", &animation_path);
+    if (ImGui::Button("Load animation"))
     {
-        std::filesystem::path full_name(animation_path);
-        std::filesystem::path name(full_name.filename());
-        full_name.replace_extension("");
-        model->Resource()->AddAnimation(animation_path, full_name.string());
+        browser->Open();
+        browser->SetTitle("Open animation");
+        browser->SetTypeFilters({ ".fbx", ".*" });
+        fileOpenA = true;
+
     }
-    IMGUI::Instance()->InputText(std::string("Rename Animation"), &anim_name);
+
+    if (fileOpenA)
+    {
+        browser->Display();
+        if (browser->HasSelected())
+        {
+            animation_path = browser->GetSelected().string();
+            std::filesystem::path full_name(animation_path);
+            std::filesystem::path name(full_name.filename());
+            full_name.replace_extension("");
+            model->Resource()->AddAnimation(animation_path, full_name.string());
+
+            fileOpenA = false;
+            browser->Close();
+        }
+    }
+
+
+
+    //IMGUI::Instance()->InputText(std::string("Rename Animation"), &anim_name);
+    ImGui::InputText("Rename Animation", anim_name, 256);
     if (ImGui::Button("Rename"))
     {
-        anims[selected_anim].Name = anim_name;
+        anims[selected_anim].Name = std::string(anim_name);
     }
 
     float rate{};
@@ -274,6 +272,10 @@ void GUI::AnimationUI()
 
 void GUI::MaterialUI()
 {
+    ImGui::FileBrowser* browser{ IMGUI::Instance()->FileBrowser() };
+
+
+
     ImGui::Begin("Materials");
 
     ImGui::ListBoxHeader("Materials");
@@ -321,39 +323,31 @@ void GUI::MaterialUI()
 
         ImGui::EndCombo();
     }
-    IMGUI::Instance()->InputText("Material File", &material_path);
-    if (ImGui::Button("Insert Material"))
+
+    static bool openFileM{};
+
+    if (ImGui::Button("Load Texture"))
     {
-        std::filesystem::path path(model_path);
-        std::filesystem::path model_name = path.filename().string();
-        model_name.replace_extension("");
-        model->Resource()->AddMaterial(material_path, model_name.string(), (MODEL_RESOURCES::MATERIAL_TYPE)s_type, model->Resource()->Materials.find(m_selected_item)->second);
+        browser->Open();
+        browser->SetTitle("Open texture file");
+        browser->SetTypeFilters({ ".png", ".jpg", ".tif", ".*" });
+        openFileM = true;
+        model->Resource()->AddMaterial(material_path, model_name, (MODEL_RESOURCES::MATERIAL_TYPE)s_type, model->Resource()->Materials.find(m_selected_item)->second);
     }
 
-    //if (wire)
-    //    DirectX11::Instance()->DeviceContext()->RSSetState(RasterizerManager::Instance()->Retrieve("Wireframe").get()->Rasterizer().Get());
-    //else
-    //    DirectX11::Instance()->DeviceContext()->RSSetState(RasterizerManager::Instance()->Retrieve("Default").get()->Rasterizer().Get());
+    if (openFileM)
+    {
+        browser->Display();
+        if (browser->HasSelected())
+        {
+            material_path = browser->GetSelected().string();
+            model->Resource()->AddMaterial(material_path, model_name, (MODEL_RESOURCES::MATERIAL_TYPE)s_type, model->Resource()->Materials.find(m_selected_item)->second);
+            browser->Close();
+            openFileM = false;
+        }
+    }
 
 
-
-    //if (ImGui::BeginCombo("Materials : ", mats.find(m_selected_item)->second.name.c_str()))
-    //{
-    //    for (int ind = 0; ind < UIDs.size(); ++ind)
-    //    {
-    //        bool selected{ m_selected_item == UIDs[0] };
-    //        if (ImGui::Selectable(m_names[ind].c_str(), &selected))
-    //        {
-    //            m_selected_item = UIDs[ind];
-    //        }
-
-    //    }
-    //    ImGui::EndCombo();
-    //}
-
-
-
-    
 
     ImGui::End();
 }
@@ -369,7 +363,7 @@ void GUI::TimelineUI()
     std::string t{ "Animation Name : " };
     t += a.Name;
     ImGui::Text(t.c_str());
-    ImGui::DragInt("Frames : ", &model->cur_Keyframe, 1.0f, 0, a.Keyframes.size() - 1);
+    ImGui::SliderInt("Frames : ", &model->cur_Keyframe, 0, a.Keyframes.size() - 1);
     ImGui::End();
 }
 
@@ -387,7 +381,6 @@ void GUI::MeshUI()
     }
     ImGui::End();
 }
-
 
 /*-------------------------------------------------GUI Render()---------------------------------------------------------*/
 
@@ -487,4 +480,36 @@ void GUI::BoneListUI()
         }
         ImGui::End();
     }
+}
+
+void OutputChild(int node_index)
+{
+    MODEL_RESOURCES::SCENE::NODE node = model->Resource()->Scenes.Nodes[node_index];
+        int parent_node_index = node.p_Index;
+    if (parent_node_index != -1) {
+        ImGui::Text(node.Name.c_str());
+        node_index = parent_node_index;
+        OutputChild(node_index);
+    }
+    return;
+
+}
+
+
+
+void GUI::NodeList()
+{
+    //if (ImGui::Begin("Nodes"))
+    //{
+    //    for (auto& node : model->resource->Scenes.Nodes)
+    //    {
+    //        if (ImGui::TreeNode(node.Name.c_str()))
+    //        {
+    //            for (auto& child_node : model->resource->Scenes.Nodes)
+    //            {
+    //                OutputChild(child_node.);
+    //            }
+    //        }
+    //    }
+    //}
 }
