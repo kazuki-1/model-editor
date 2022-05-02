@@ -60,15 +60,10 @@ std::shared_ptr<TEXTURE>TextureManager::Retrieve(std::wstring file_path)
     // マップに既存のテキスチャを検査
     for (auto& t : textureMap)
     {
+        if (t.second.expired())
+            textureMap.erase(file_path);
         if (file_path == t.first)
-        {
-            if (t.second.expired())
-            {
-                textureMap.erase(file_path);
-                continue;
-            }
-            return t.second.lock();
-        }
+            return t.second.lock();        
     }
 
     // Generate new texture if not found
